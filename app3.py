@@ -29,19 +29,18 @@ def signUp():
     try:
         _name = request.form['inputName']
         _email = request.form['inputEmail']
-        _password = request.form['inputPassword']
+        _address = request.form['inputAddress']
 
         print(_name)
         print(_email)
-        print(_password)
+        print(_address)
 
         # validate the received values
-        if _name and _email and _password:
+        if _name and _email and _address:
             
             conn = mysql.connect()
             cursor = conn.cursor()
-            _hashed_password = _password
-            cursor.execute('insert into tbl_user (user_name, user_username, user_password) VALUES (%s, %s, %s)', ( _name,_email,_hashed_password))
+            cursor.execute('insert into tbl_user (user_name, user_username, address) VALUES (%s, %s, %s)', ( _name,_email,_address))
             conn.commit()
 
             return render_template('signup.html')
@@ -59,7 +58,7 @@ def list():
     try:
             conn = mysql.connect()
             cursor = conn.cursor()
-            cursor.execute ('select user_name, user_username from tbl_user')
+            cursor.execute ('select user_name, user_username, address from tbl_user')
             data = cursor.fetchall()
             print(data[0]);
 

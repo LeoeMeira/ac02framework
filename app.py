@@ -86,8 +86,3 @@ if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
 
-
-    docker -compose up -d # Baixa o banco e roda junto com o aódigo
-    docker exec -it /bin.bash id_container_banco
-
-
